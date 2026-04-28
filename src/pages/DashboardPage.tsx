@@ -22,32 +22,40 @@ import { countByStatus, wardOccupancyPercent } from '../utils/patientMetrics';
 export default function DashboardPage() {
   const navigate = useNavigate();
   const { patients, fetchPatients } = usePatientStore();
-  const { sendLocalNotification } = useNotificationStore();
 
   useEffect(() => {
     fetchPatients().then(() => {
-      setTimeout(() => {
-        if (useNotificationStore.getState().notifications.length === 0) {
-          sendLocalNotification(
+      const { patients: loaded } = usePatientStore.getState();
+      const { notifications, sendLocalNotification: send } = useNotificationStore.getState();
+      const alreadyAlerted = notifications.some((n) => n.type === 'danger');
+      if (alreadyAlerted) return;
+
+      const critical = loaded.filter((p) => p.status === 'Critical');
+      if (critical.length > 0) {
+        // Fire one OS notification per critical patient (staggered so they stack)
+        critical.forEach((p, i) => {
+          setTimeout(() => {
+            send(
+              '⚠ Critical vitals threshold',
+              `${p.name} · ${p.condition} — immediate review required.`,
+              `critical-load-${p.id}`,
+              'danger'
+            );
+          }, 600 + i * 800);
+        });
+      } else {
+        setTimeout(() => {
+          send(
             'Telemetry nominal',
             'All primary ward nodes online · sync latency 14ms.',
             'telemetry-boot',
             'success'
           );
-        }
-      }, 1800);
+        }, 1200);
+      }
     });
-  }, [fetchPatients, sendLocalNotification]);
-
-  const simulateCriticalAlert = () => {
-    const criticalName = patients.find((p) => p.status === 'Critical')?.name ?? 'Bay 7';
-    sendLocalNotification(
-      'Critical vitals threshold',
-      `${criticalName}: SpO₂ dipped below 92%. Escalation suggested.`,
-      `critical-${Date.now()}`,
-      'warning'
-    );
-  };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fetchPatients]);
 
   const critical = countByStatus(patients, 'Critical');
   const stable = countByStatus(patients, 'Stable');
@@ -59,15 +67,6 @@ export default function DashboardPage() {
       <PageHeader
         eyebrow="Dr. Sterling · General ward"
         title="Overview"
-        actions={
-          <button
-            type="button"
-            onClick={simulateCriticalAlert}
-            className="self-start sm:self-auto font-tech text-[0.5625rem] font-semibold uppercase tracking-[0.12em] px-3 py-2 rounded-md border border-amber-500/35 bg-amber-500/[0.08] text-amber-400/95 hover:bg-amber-500/[0.14] transition-colors cursor-pointer"
-          >
-            Simulate critical alert
-          </button>
-        }
       />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 mb-4">

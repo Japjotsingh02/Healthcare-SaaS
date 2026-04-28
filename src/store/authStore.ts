@@ -39,8 +39,6 @@ interface AuthState {
   loginWithGoogle: () => Promise<AuthActionResult>;
   sendPasswordReset: (email: string) => Promise<AuthActionResult>;
   logout: () => Promise<void>;
-  setUser: (user: AuthUser | null) => void;
-  setLoading: (loading: boolean) => void;
   clearError: () => void;
   initAuth: () => () => void;
 }
@@ -157,8 +155,6 @@ export const useAuthStore = create<AuthState>()(
         set({ user: null, error: null });
       },
 
-      setUser: (user) => set({ user }),
-      setLoading: (loading) => set({ loading }),
       clearError: () => set({ error: null }),
 
       initAuth: () => {
