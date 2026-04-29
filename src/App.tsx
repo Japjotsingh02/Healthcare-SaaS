@@ -12,17 +12,13 @@ const AnalyticsPage = lazy(() => import('./pages/AnalyticsPage'));
 const PatientDetailsPage = lazy(() => import('./pages/PatientDetailsPage'));
 const PatientDetailPage = lazy(() => import('./pages/PatientDetailPage'));
 
-function AuthBootstrap() {
+export default function App() {
   useEffect(() => {
     return useAuthStore.getState().initAuth();
   }, []);
-  return null;
-}
 
-export default function App() {
   return (
     <BrowserRouter>
-      <AuthBootstrap />
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/login" element={<LoginPage />} />
