@@ -17,7 +17,6 @@ export default function ProtectedRoute({ children }: Props) {
     }
   }, [user, initialized, navigate]);
 
-  // While auth is being determined, show a minimal loader
   if (!initialized) {
     return <Loader />;
   }
