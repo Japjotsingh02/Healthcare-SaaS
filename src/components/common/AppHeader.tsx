@@ -12,7 +12,7 @@ export default function AppHeader() {
     : user?.email?.slice(0, 2).toUpperCase() ?? 'MC';
 
   return (
-    <header className="h-11 shrink-0 flex items-center justify-between px-5 border-b border-border-subtle bg-root/90 backdrop-blur-md relative">
+    <header className="h-11 shrink-0 flex items-center justify-between px-5 border-b border-border-subtle bg-root/90 backdrop-blur-md relative z-40">
       <div
         className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-accent/25 to-transparent pointer-events-none"
         aria-hidden

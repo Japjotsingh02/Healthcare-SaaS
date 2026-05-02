@@ -20,7 +20,7 @@ import PageHeader from '../components/common/PageHeader';
 import RechartsTooltip from '../components/charts/RechartsTooltip';
 import { WARD_DATA } from '../utils/mockData';
 import { patientStatusCounts } from '../utils/patientMetrics';
-import { PATIENT_STATUS_PIE_COLORS } from '../lib/chartPalette';
+import { PATIENT_STATUS_PIE_COLORS } from '../constants/chartPalette';
 
 export default function AnalyticsPage() {
   const { patients, fetchPatients } = usePatientStore();

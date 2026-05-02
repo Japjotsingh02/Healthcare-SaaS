@@ -2,7 +2,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Bell, X, CheckCheck, Trash2, Radio } from 'lucide-react';
 import { useNotificationStore } from '../../store/notificationStore';
-import { NOTIFICATION_TYPE_STYLES } from '../../lib/notificationVisuals';
+import { NOTIFICATION_TYPE_STYLES } from '../../constants/notificationVisuals';
 
 export default function NotificationBell() {
   const [open, setOpen] = useState(false);
@@ -55,7 +55,7 @@ export default function NotificationBell() {
 
       {open && (
         <div
-          className="absolute right-0 top-10 z-[200] w-[min(100vw-1.5rem,300px)] overflow-hidden rounded-lg border border-border-default bg-[#0c0c0f]/95 backdrop-blur-xl shadow-[0_16px_48px_rgba(0,0,0,0.55),0_0_0_1px_rgba(99,102,241,0.08),inset_0_1px_0_rgba(255,255,255,0.06)] animate-[scale-in_0.2s_ease-out_both] origin-top-right"
+          className="absolute right-0 top-10 z-[300] w-[min(100vw-1.5rem,300px)] overflow-hidden rounded-lg border border-border-default bg-[#0c0c0f]/95 backdrop-blur-xl shadow-[0_16px_48px_rgba(0,0,0,0.55),0_0_0_1px_rgba(99,102,241,0.08),inset_0_1px_0_rgba(255,255,255,0.06)] animate-[scale-in_0.2s_ease-out_both] origin-top-right"
           role="dialog"
           aria-label="Notifications"
         >
