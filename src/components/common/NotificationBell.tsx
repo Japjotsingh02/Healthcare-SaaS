@@ -1,8 +1,8 @@
 // src/components/common/NotificationBell.tsx
-import { useState, useRef, useEffect } from 'react';
-import { Bell, X, CheckCheck, Trash2, Radio } from 'lucide-react';
-import { useNotificationStore } from '../../store/notificationStore';
-import { NOTIFICATION_TYPE_STYLES } from '../../constants/notificationVisuals';
+import { useState, useRef, useEffect } from "react";
+import { Bell, X, CheckCheck, Trash2, Radio } from "lucide-react";
+import { useNotificationStore } from "../../store/notificationStore";
+import { NOTIFICATION_TYPE_STYLES } from "../../constants/notificationVisuals";
 
 export default function NotificationBell() {
   const [open, setOpen] = useState(false);
@@ -22,10 +22,11 @@ export default function NotificationBell() {
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+      if (ref.current && !ref.current.contains(e.target as Node))
+        setOpen(false);
     };
-    document.addEventListener('mousedown', handler);
-    return () => document.removeEventListener('mousedown', handler);
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
   }, []);
 
   const handleEnableDesktop = async () => {
@@ -48,7 +49,7 @@ export default function NotificationBell() {
         <Bell size={17} strokeWidth={1.5} />
         {count > 0 && (
           <span className="absolute top-0.5 right-0.5 min-w-[14px] h-[14px] px-0.5 flex items-center justify-center rounded-full bg-rose-500 text-[9px] font-tech font-bold text-white border-2 border-sidebar leading-none">
-            {count > 9 ? '9+' : count}
+            {count > 9 ? "9+" : count}
           </span>
         )}
       </button>
@@ -65,7 +66,7 @@ export default function NotificationBell() {
                 Alerts
               </p>
               <p className="font-tech text-[0.5625rem] font-semibold uppercase tracking-[0.12em] text-tx-dim mt-0.5">
-                {count} unread · {swRegistered ? 'SW active' : 'SW pending'}
+                {count} unread · {swRegistered ? "SW active" : "SW pending"}
               </p>
             </div>
             <div className="flex items-center shrink-0 gap-0">
@@ -113,17 +114,23 @@ export default function NotificationBell() {
               </div>
             ) : (
               notifications.map((n) => {
-                const styles = NOTIFICATION_TYPE_STYLES[n.type] ?? NOTIFICATION_TYPE_STYLES.info;
+                const styles =
+                  NOTIFICATION_TYPE_STYLES[n.type] ??
+                  NOTIFICATION_TYPE_STYLES.info;
                 return (
                   <button
                     key={n.id}
                     type="button"
                     onClick={() => markRead(n.id)}
                     className={`w-full text-left px-3 py-2.5 border-b border-border-subtle/80 outline-none cursor-pointer flex gap-2.5 items-stretch transition-colors last:border-b-0 ${
-                      n.read ? 'bg-transparent hover:bg-white/[0.03]' : 'bg-accent/[0.04] hover:bg-accent/[0.08]'
+                      n.read
+                        ? "bg-transparent hover:bg-white/[0.03]"
+                        : "bg-accent/[0.04] hover:bg-accent/[0.08]"
                     }`}
                   >
-                    <div className={`w-0.5 rounded-full shrink-0 self-stretch my-0.5 ${styles.bar}`} />
+                    <div
+                      className={`w-0.5 rounded-full shrink-0 self-stretch my-0.5 ${styles.bar}`}
+                    />
                     <div className="flex-1 min-w-0 pt-0.5">
                       <div className="flex items-center gap-2">
                         {!n.read && (
@@ -136,11 +143,13 @@ export default function NotificationBell() {
                       <p className="font-primary text-[0.75rem] text-tx-secondary mt-1 line-clamp-2 leading-relaxed">
                         {n.message}
                       </p>
-                      <p className={`font-tech text-[0.5625rem] font-semibold uppercase tracking-[0.1em] mt-1.5 ${styles.label}`}>
-                        {n.type} ·{' '}
+                      <p
+                        className={`font-tech text-[0.5625rem] font-semibold uppercase tracking-[0.1em] mt-1.5 ${styles.label}`}
+                      >
+                        {n.type} ·{" "}
                         {new Date(n.timestamp).toLocaleTimeString([], {
-                          hour: '2-digit',
-                          minute: '2-digit',
+                          hour: "2-digit",
+                          minute: "2-digit",
                         })}
                       </p>
                     </div>
@@ -154,7 +163,11 @@ export default function NotificationBell() {
             <div className="flex items-start gap-2">
               <Radio
                 size={14}
-                className={permissionGranted ? 'text-emerald-400 shrink-0 mt-0.5' : 'text-tx-dim shrink-0 mt-0.5'}
+                className={
+                  permissionGranted
+                    ? "text-emerald-400 shrink-0 mt-0.5"
+                    : "text-tx-dim shrink-0 mt-0.5"
+                }
                 strokeWidth={1.5}
               />
               <div className="flex-1 min-w-0">
@@ -163,8 +176,8 @@ export default function NotificationBell() {
                 </p>
                 <p className="font-tech text-[0.5625rem] text-tx-dim mt-0.5 leading-relaxed">
                   {permissionGranted
-                    ? 'OS notifications enabled for critical signals.'
-                    : 'Enable to mirror alerts outside the browser.'}
+                    ? "OS notifications enabled for critical signals."
+                    : "Enable to mirror alerts outside the browser."}
                 </p>
                 {!permissionGranted && (
                   <button
@@ -173,7 +186,7 @@ export default function NotificationBell() {
                     onClick={handleEnableDesktop}
                     className="mt-2 w-full py-1.5 rounded-md text-[0.6875rem] font-semibold font-primary bg-accent/20 text-accent border border-accent/30 hover:bg-accent/30 transition-colors disabled:opacity-50"
                   >
-                    {enabling ? 'Requesting…' : 'Enable notifications'}
+                    {enabling ? "Requesting…" : "Enable notifications"}
                   </button>
                 )}
               </div>

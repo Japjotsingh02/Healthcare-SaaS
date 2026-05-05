@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import type { ComponentProps, ReactNode } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
-import { authInputClass, authLabelClass } from '../../constants/authUi';
 
 interface Props extends ComponentProps<'input'> {
   label: string;
@@ -30,7 +29,7 @@ export default function AuthTextField({
   return (
     <div className={wrapClassName}>
       <div className={`flex items-center${labelRight ? ' justify-between' : ''}`}>
-        <label htmlFor={inputId} className={authLabelClass}>
+        <label htmlFor={inputId} className="font-tech text-[0.6875rem] font-medium uppercase tracking-[0.12em] leading-relaxed block mb-2 text-[#8e8e93]">
           {label}
         </label>
         {labelRight}
@@ -39,7 +38,7 @@ export default function AuthTextField({
         <input
           id={inputId}
           type={resolvedType}
-          className={`${authInputClass} ${isPassword && showToggle ? 'pr-11' : ''} ${className}`.trim()}
+          className={`w-full px-[14px] py-[11px] border border-border-default rounded-md text-tx-primary outline-none transition-all duration-150 focus:border-accent focus:shadow-[0_0_0_3px_rgba(99,102,241,0.14)] h-12 bg-[#0c0c0e]${isPassword && showToggle ? 'pr-11' : ''} ${className}`.trim()}
           {...rest}
         />
         {isPassword && showToggle && (
