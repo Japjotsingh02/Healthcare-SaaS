@@ -1,4 +1,3 @@
-// src/pages/PatientDetailsPage.tsx
 import { useEffect } from 'react';
 import { Search } from 'lucide-react';
 import { usePatientStore } from '../store/patientStore';

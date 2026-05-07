@@ -1,4 +1,3 @@
-// src/components/common/NotificationBell.tsx
 import { useState, useRef, useEffect } from "react";
 import { Bell, X, CheckCheck, Trash2, Radio } from "lucide-react";
 import { useNotificationStore } from "../../store/notificationStore";

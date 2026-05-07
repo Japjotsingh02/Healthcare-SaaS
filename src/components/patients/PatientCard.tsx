@@ -1,4 +1,3 @@
-// src/components/patients/PatientCard.tsx
 import { Calendar } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import type { Patient } from '../../types';

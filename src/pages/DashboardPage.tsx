@@ -32,7 +32,6 @@ export default function DashboardPage() {
 
       const critical = loaded.filter((p) => p.status === 'Critical');
       if (critical.length > 0) {
-        // Fire one OS notification per critical patient (staggered so they stack)
         critical.forEach((p, i) => {
           setTimeout(() => {
             send(
@@ -54,7 +53,6 @@ export default function DashboardPage() {
         }, 1200);
       }
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchPatients]);
 
   const critical = countByStatus(patients, 'Critical');

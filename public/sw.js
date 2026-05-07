@@ -1,5 +1,3 @@
-/* MediCore — notifications-only service worker (no fetch interception; avoids dev/build caching issues) */
-
 self.addEventListener("install", () => {
   self.skipWaiting();
 });

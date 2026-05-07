@@ -1,4 +1,3 @@
-// src/components/common/Layout.tsx
 import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';

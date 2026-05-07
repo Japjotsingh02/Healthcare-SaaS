@@ -1,4 +1,3 @@
-// src/pages/PatientDetailPage.tsx
 import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import {ArrowLeft, FileText, Activity, Bell, UserRound} from 'lucide-react';

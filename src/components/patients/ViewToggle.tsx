@@ -1,4 +1,3 @@
-// src/components/patients/ViewToggle.tsx
 import { LayoutGrid, List } from 'lucide-react';
 import type { ViewMode } from '../../types';
 

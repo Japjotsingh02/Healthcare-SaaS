@@ -33,7 +33,6 @@ export const usePatientStore = create<PatientState>((set, get) => ({
 
   fetchPatients: async () => {
     set({ loading: true });
-    // Simulate network delay
     await new Promise((r) => setTimeout(r, 800));
     set({ patients: MOCK_PATIENTS, loading: false });
   },

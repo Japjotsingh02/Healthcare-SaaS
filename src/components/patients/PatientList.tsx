@@ -1,4 +1,3 @@
-// src/components/patients/PatientList.tsx
 import { useNavigate } from 'react-router-dom';
 import type { Patient } from '../../types';
 import { usePatientStore } from '../../store/patientStore';
